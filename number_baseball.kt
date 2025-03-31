@@ -1,8 +1,14 @@
 fun main() {
   val target = generateRandomTarget()
-  var guess = getValidGuess()
-  while (target != guess) {
-    guess = getValidGuess()
+  // println("정답: $target")
+
+  while (true) {
+    val guess = getValidGuess()
+    if (guess == target) {
+      println("정답!")
+      break
+    } 
+    checkMatch(target, guess)
   }
 }
 
@@ -22,4 +28,20 @@ fun getValidGuess(): String {
   } 
 
   return target
+}
+
+fun checkMatch(target: String, guess: String) {
+  val targetSet = target.toSet()
+
+  var ball = 0
+  var strike = 0
+
+  for (i in 0 until 4) {
+    if (guess[i] == target[i]) {
+      strike ++
+    } else if (guess[i] in targetSet) {
+        ball ++
+    }
+  }
+  
 }
