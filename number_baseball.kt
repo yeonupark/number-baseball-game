@@ -1,5 +1,13 @@
 fun main() {
-  val guess = getValidGuess()
+  val target = generateRandomTarget()
+  var guess = getValidGuess()
+  while (target != guess) {
+    guess = getValidGuess()
+  }
+}
+
+fun generateRandomTarget(): String {
+  return (0..9).shuffled().take(4).joinToString("")
 }
 
 fun getValidGuess(): String {
